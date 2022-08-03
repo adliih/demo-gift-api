@@ -1,0 +1,25 @@
+services:
+  webapp:
+    build: docker/webapp
+    volumes:
+      - .:/var/www
+    working_dir: /var/www
+    networks: 
+      - external
+    ports: 
+      - "8000:8000"
+    command: php artisan serve --host=0.0.0.0
+  database:
+    image: mariadb:10
+    volumes:
+      - ./docker/mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    networks: 
+      - external
+    ports:
+      - "3306:3306"
+    command: ["mysqld"]
+networks:
+  external:
+    external: true
