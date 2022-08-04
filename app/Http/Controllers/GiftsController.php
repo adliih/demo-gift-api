@@ -55,7 +55,7 @@ class GiftsController extends Controller
 
         $orderConfiguration = self::SORT_CONFIGURATION_MAP[$orderBy][$orderDirection];
 
-        $gifts = Gift::query()
+        $gifts = Gift::withCount(['reviews'])
             ->orderBy($orderConfiguration[0], $orderConfiguration[1])
             ->simplePaginate($limit);
 

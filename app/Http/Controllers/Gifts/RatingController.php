@@ -3,14 +3,16 @@
 namespace App\Http\Controllers\Gifts;
 
 use App\Http\Controllers\Controller;
+use App\Models\Gift;
 use App\Presenters\Gifts\RatingPresenter;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Exception\UnprocessableEntityHttpException;
 
 class RatingController extends Controller
 {
 
 
-    public function rating(int $id, Request $request, RatingPresenter $presenter)
+    public function rating(Gift $gift, Request $request, RatingPresenter $presenter)
     {
         $request->validate([
             'rating' => [
@@ -19,11 +21,20 @@ class RatingController extends Controller
                 'max:5'
             ],
         ]);
-
         $rating = $request->rating;
+        $userId = $request->user()->id;
+
+        // check is gift already rated by user
+        if ($gift->isAlreadyReviewedByUser($userId)) {
+            throw new UnprocessableEntityHttpException("You already rate this gift");
+        }
+
+        // create a new review data
+        $review = $gift->addReview($userId, $rating);
+        $review->loadMissing('gift');
 
         return [
-            'rating' => $presenter->transform($rating)
+            'rating' => $presenter->transform($review)
         ];
     }
 }

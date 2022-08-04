@@ -12,7 +12,8 @@ class GiftPresenter
             'id' => $gift->id,
             'name' => $gift->name,
             'rating' => $gift->rating,
-            'review_count' => $gift->reviews_count ?? 0, // FIXME
+            // using ?? because we only show count when relation count is loaded
+            'review_count' => $gift->reviews_count ?? 0,
             'price' => $gift->price,
             'qty' => $gift->qty,
             'description' => $gift->description,
