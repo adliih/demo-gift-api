@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Gift;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -29,6 +30,6 @@ class DatabaseSeeder extends Seeder
 
     private function seedGifts()
     {
-        // TODO
+        Gift::factory()->times(10)->create();
     }
 }

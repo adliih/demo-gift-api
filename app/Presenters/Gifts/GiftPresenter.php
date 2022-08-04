@@ -2,20 +2,22 @@
 
 namespace App\Presenters\Gifts;
 
+use App\Models\Gift;
+
 class GiftPresenter
 {
-    public function transform($gift)
+    public function transform(Gift $gift)
     {
         return [
-            'id' => 1,
-            'name' => "lorem",
-            'review' => 4,
-            'review_count' => 100,
-            'price' => 0,
-            'qty' => 1,
-            'description' => "lorem ipsum",
-            'badge_type' => 'new',
-            'is_favourited' => true
+            'id' => $gift->id,
+            'name' => $gift->name,
+            'rating' => $gift->rating,
+            'review_count' => $gift->reviews_count ?? 0, // FIXME
+            'price' => $gift->price,
+            'qty' => $gift->qty,
+            'description' => $gift->description,
+            'badge_type' => null, // FIXME
+            'is_favourited' => null // FIXME
         ];
     }
 }

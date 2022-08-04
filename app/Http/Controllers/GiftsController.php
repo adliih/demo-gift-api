@@ -2,11 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Gift;
 use App\Presenters\Gifts\GiftPresenter;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class GiftsController extends Controller
 {
+
+    private const SORT_BY_NEWEST = 'NEWEST';
+    private const SORT_BY_RATING = 'RATING';
+    private const SORT_DIRECTION_ASC = 'ASC';
+    private const SORT_DIRECTION_DESC = 'DESC';
+
+    private const SORT_CONFIGURATION_MAP = [
+        self::SORT_BY_NEWEST => [
+            self::SORT_DIRECTION_ASC => ['id', 'desc'],
+            self::SORT_DIRECTION_DESC => ['id', 'asc'],
+        ],
+        self::SORT_BY_RATING => [
+            self::SORT_DIRECTION_ASC => ['rating', 'asc'],
+            self::SORT_DIRECTION_DESC => ['rating', 'desc'],
+        ],
+    ];
 
     private GiftPresenter $presenter;
 
@@ -14,16 +32,38 @@ class GiftsController extends Controller
         $this->presenter = $presenter;
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        $request->validate([
+            'sort_direction' => [
+                Rule::in([ self::SORT_DIRECTION_ASC, self::SORT_DIRECTION_DESC ]),
+            ],
+            'sort_by' => [
+                Rule::in([ self::SORT_BY_NEWEST, self::SORT_BY_RATING ]),
+            ]
+        ]);
+        $orderBy = $request->sort_by ?? self::SORT_BY_NEWEST;
+        $orderDirection = $request->sort_direction ?? self::SORT_DIRECTION_DESC;
+        $limit = intval($request->limit);
+
+        $orderConfiguration = self::SORT_CONFIGURATION_MAP[$orderBy][$orderDirection];
+
+        $gifts = Gift::query()
+            ->orderBy($orderConfiguration[0], $orderConfiguration[1])
+            ->simplePaginate($limit);
+
         return [
-            'gifts' => collect()->map(fn($gift) => $this->presenter->transform($gift)),
+            'gifts' => collect($gifts->items())->map(fn($gift) => $this->presenter->transform($gift)),
+            'pagination' => [
+                'limit' => $gifts->perPage(),
+                'page' => $gifts->currentPage(),
+                'has_more' => $gifts->hasMorePages(),
+            ]
         ];
     }
 
-    public function show(int $id)
+    public function show(Gift $gift)
     {
-        $gift = null;
         return [
             'gift' => $this->presenter->transform($gift),
         ];
@@ -45,9 +85,9 @@ class GiftsController extends Controller
         ];
     }
 
-    public function destroy(int $id)
+    public function destroy(Gift $gift)
     {
-        $gift = null;
+        $gift->delete();
         return [
             'gift' => $this->presenter->transform($gift),
         ];
