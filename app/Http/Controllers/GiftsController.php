@@ -26,6 +26,13 @@ class GiftsController extends Controller
         ],
     ];
 
+    private const COMMON_GIFT_FIELD_VALIDATION_RULE = [
+        'name' => 'string|min:1',
+        'price' => 'numeric|min:1',
+        'qty' => 'numeric|min:1',
+        'description' => 'string|min:1',
+    ];
+
     private GiftPresenter $presenter;
 
     public function __construct(GiftPresenter $presenter) {
@@ -71,12 +78,7 @@ class GiftsController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'string|min:1',
-            'price' => 'numeric|min:1',
-            'qty' => 'numeric|min:1',
-            'description' => 'string|min:1',
-        ]);
+        $validated = $request->validate(self::COMMON_GIFT_FIELD_VALIDATION_RULE);
 
         $gift = Gift::create($validated);
 
@@ -85,9 +87,13 @@ class GiftsController extends Controller
         ];
     }
 
-    public function update(int $id, Request $request)
+    public function update(Gift $gift, Request $request)
     {
-        $gift = $request->json();
+        $validated = $request->validate(self::COMMON_GIFT_FIELD_VALIDATION_RULE);
+
+        $gift->fill($validated);
+        $gift->save();
+
         return [
             'gift' => $this->presenter->transform($gift),
         ];
