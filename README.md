@@ -28,3 +28,8 @@ This will wipe all database tables, re-run the migrations, and seeding the data
 docker-compose exec webapp php artisan db:wipe && php artisan migrate &&  php artisan d
 b:seed
 ```
+
+## API Collection
+The collection are generated using [Insomnia](https://insomnia.rest/)
+
+Please see [Insomnia.yaml](Insomnia.yaml) file  and export them.

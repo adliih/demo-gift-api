@@ -1,0 +1,352 @@
+_type: export
+__export_format: 4
+__export_date: 2022-08-04T01:55:19.172Z
+__export_source: insomnia.desktop.app:v2022.2.0
+resources:
+  - _id: req_22d0f1b923654e929a73b84dad9d590f
+    parentId: wrk_6c95c48b4ef643ebaa17246928fdd3df
+    modified: 1659571807264
+    created: 1659544811641
+    url: "{{ _.url }}/api/login"
+    name: Login
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"email": "user@example.com",
+        	"password": "password"
+        }
+    parameters: []
+    headers:
+      - id: pair_f797c48b229741a7a69258212ace7cca
+        name: Accept
+        value: application/json
+        description: ""
+      - name: Content-Type
+        value: application/json
+        id: pair_cc13740a1bf64b7794efd08b1eb058f8
+    authentication: {}
+    metaSortKey: -1659544219732
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: wrk_6c95c48b4ef643ebaa17246928fdd3df
+    parentId: null
+    modified: 1659544190761
+    created: 1659544190761
+    name: Demo Gift API Laravel
+    description: ""
+    scope: collection
+    _type: workspace
+  - _id: req_18d553d4c0b2401caac6f2f30460c387
+    parentId: fld_e1b860e22243408b85a8e862facbc6d7
+    modified: 1659578085387
+    created: 1659569968297
+    url: "{{ _.url }}/api/gifts"
+    name: List
+    description: ""
+    method: GET
+    body: {}
+    parameters:
+      - id: pair_d0240600fa684eb9b8f3e7b4279d382a
+        name: limit
+        value: "10"
+        description: ""
+        disabled: false
+      - id: pair_7ae82fa53586459e95a549e6004ac525
+        name: page
+        value: "1"
+        description: ""
+      - id: pair_ec2f278c7a464e48a84048b62d0b55f9
+        name: sort_by
+        value: RATING
+        description: ""
+        disabled: true
+      - id: pair_a14fd9cc7dd8485fa1ace0ea053aefcc
+        name: sort_direction
+        value: DESC
+        description: ""
+        disabled: true
+    headers:
+      - id: pair_f797c48b229741a7a69258212ace7cca
+        name: Accept
+        value: application/json
+        description: ""
+    authentication: {}
+    metaSortKey: -1659315078826.5
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: fld_e1b860e22243408b85a8e862facbc6d7
+    parentId: wrk_6c95c48b4ef643ebaa17246928fdd3df
+    modified: 1659569963596
+    created: 1659569961515
+    name: Gifts
+    description: ""
+    environment: {}
+    environmentPropertyOrder: null
+    metaSortKey: -1659544219682
+    _type: request_group
+  - _id: req_3aa78c22898d47d7a3a7fc7e282ac360
+    parentId: fld_e1b860e22243408b85a8e862facbc6d7
+    modified: 1659574242261
+    created: 1659570045609
+    url: "{{ _.url }}/api/gifts/:id"
+    name: Get By ID
+    description: ""
+    method: GET
+    body: {}
+    parameters:
+      - id: pair_d1cd9940d25d4a74af0bef1c724bbb3d
+        name: id
+        value: "1"
+        description: ""
+    headers:
+      - id: pair_f797c48b229741a7a69258212ace7cca
+        name: Accept
+        value: application/json
+        description: ""
+    authentication: {}
+    metaSortKey: -1659200508373.75
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_d5aeb17249eb442e9f7d5e41727fa9d8
+    parentId: fld_e1b860e22243408b85a8e862facbc6d7
+    modified: 1659574628278
+    created: 1659570091551
+    url: "{{ _.url }}/api/gifts/"
+    name: Create
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"name": "Lorep Create API",
+        	"price": 1000000,
+        	"qty": 9,
+        	"description": "desc"
+        }
+    parameters:
+      - id: pair_9e58b5dc77a54cb2b3743fc3b5aabdde
+        name: ""
+        value: ""
+        description: ""
+    headers:
+      - id: pair_f797c48b229741a7a69258212ace7cca
+        name: Accept
+        value: application/json
+        description: ""
+      - name: Content-Type
+        value: application/json
+        id: pair_c513e641ee914082b1f7b120df60ded9
+    authentication: {}
+    metaSortKey: -1659143223147.375
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_7dbc0e78da8c4c72a21bfc91e669f3bc
+    parentId: fld_e1b860e22243408b85a8e862facbc6d7
+    modified: 1659574798114
+    created: 1659570446230
+    url: "{{ _.url }}/api/gifts/:id"
+    name: Update
+    description: ""
+    method: PUT
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"description": "updated desc lorem"
+        }
+    parameters:
+      - id: pair_b6bd08b96ddc4aefb31c5f120802a925
+        name: id
+        value: "1"
+        description: ""
+    headers:
+      - id: pair_f797c48b229741a7a69258212ace7cca
+        name: Accept
+        value: application/json
+        description: ""
+      - name: Content-Type
+        value: application/json
+        id: pair_c513e641ee914082b1f7b120df60ded9
+    authentication: {}
+    metaSortKey: -1659114580534.1875
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_968f7e944dad425ba1c6a1ffcfe54460
+    parentId: fld_e1b860e22243408b85a8e862facbc6d7
+    modified: 1659574240675
+    created: 1659570533317
+    url: "{{ _.url }}/api/gifts/:id"
+    name: Delete
+    description: ""
+    method: DELETE
+    body: {}
+    parameters:
+      - id: pair_b6bd08b96ddc4aefb31c5f120802a925
+        name: id
+        value: "2"
+        description: ""
+    headers:
+      - id: pair_f797c48b229741a7a69258212ace7cca
+        name: Accept
+        value: application/json
+        description: ""
+    authentication: {}
+    metaSortKey: -1659100259227.5938
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_f9d49a5543694e8e8286285124d06ad9
+    parentId: fld_e1b860e22243408b85a8e862facbc6d7
+    modified: 1659577779730
+    created: 1659571331454
+    url: "{{ _.url }}/api/gifts/:id/redeem"
+    name: Redeem
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"qty": 1
+        }
+    parameters:
+      - id: pair_c3a2e9fef54d43258a566dcd4db90248
+        name: id
+        value: "1"
+        description: ""
+    headers:
+      - id: pair_f797c48b229741a7a69258212ace7cca
+        name: Accept
+        value: application/json
+        description: ""
+      - name: Content-Type
+        value: application/json
+        id: pair_c513e641ee914082b1f7b120df60ded9
+    authentication: {}
+    metaSortKey: -1659100259177.5938
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: req_f490dcf06bee4d368da941d873bd3761
+    parentId: fld_e1b860e22243408b85a8e862facbc6d7
+    modified: 1659576297740
+    created: 1659571405410
+    url: "{{ _.url }}/api/gifts/:id/rating"
+    name: Rating
+    description: ""
+    method: POST
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"rating": 5
+        }
+    parameters:
+      - id: pair_c3a2e9fef54d43258a566dcd4db90248
+        name: id
+        value: "7"
+        description: ""
+    headers:
+      - id: pair_f797c48b229741a7a69258212ace7cca
+        name: Accept
+        value: application/json
+        description: ""
+      - name: Content-Type
+        value: application/json
+        id: pair_c513e641ee914082b1f7b120df60ded9
+    authentication: {}
+    metaSortKey: -1659093098549.2969
+    isPrivate: false
+    settingStoreCookies: true
+    settingSendCookies: true
+    settingDisableRenderRequestBody: false
+    settingEncodeUrl: true
+    settingRebuildPath: true
+    settingFollowRedirects: global
+    _type: request
+  - _id: env_ed8529843b07282f3d7dbb5129a2d007587b7d62
+    parentId: wrk_6c95c48b4ef643ebaa17246928fdd3df
+    modified: 1659544210967
+    created: 1659544190768
+    name: Base Environment
+    data:
+      url: http://localhost:8000
+    dataPropertyOrder:
+      "&":
+        - url
+    color: null
+    isPrivate: false
+    metaSortKey: 1659544190768
+    _type: environment
+  - _id: jar_ed8529843b07282f3d7dbb5129a2d007587b7d62
+    parentId: wrk_6c95c48b4ef643ebaa17246928fdd3df
+    modified: 1659577784304
+    created: 1659544190770
+    name: Default Jar
+    cookies:
+      - key: laravel_session
+        value: 6kisQ8XCpyd6RR0n36dAesnZUBOEglEotERzx0gp
+        expires: 2022-08-04T03:49:44.000Z
+        maxAge: 7200
+        domain: localhost
+        path: /
+        httpOnly: true
+        extensions:
+          - samesite=lax
+        hostOnly: true
+        creation: 2022-08-04T00:09:56.410Z
+        lastAccessed: 2022-08-04T01:49:44.304Z
+        id: "7605359767679243"
+    _type: cookie_jar
+  - _id: spc_ecc1b68a5a994fceafcec3a6e2958cea
+    parentId: wrk_6c95c48b4ef643ebaa17246928fdd3df
+    modified: 1659544190762
+    created: 1659544190762
+    fileName: Demo Gift API Laravel
+    contents: ""
+    contentType: yaml
+    _type: api_spec
