@@ -11,6 +11,18 @@ Run all service include database
 docker-compose up -d
 ```
 
+### `.env` for Database Configuration
+If you are running the application fully with it's docker database, you need to replace the .env for the following:
+```env
+DB_CONNECTION=mysql
+DB_HOST=database # Follow docker container name
+DB_PORT=3306
+DB_DATABASE=laravel # Created by docker initialitation script
+DB_USERNAME=laravel # Created and granted by docker initialitation script 
+DB_PASSWORD=laravel # Created and granted by docker initialitation script 
+```
+
+
 ### Artisan
 Use docker exec to run artisan as a container
 ```sh
