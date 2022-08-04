@@ -11,7 +11,7 @@ class GiftPresenter
         return [
             'id' => $gift->id,
             'name' => $gift->name,
-            'rating' => $gift->rating,
+            'rating' => round($gift->rating),
             // using ?? because we only show count when relation count is loaded
             'review_count' => $gift->reviews_count ?? 0,
             'price' => $gift->price,
