@@ -13,4 +13,11 @@ class Gift extends Model
 
     public $table = 'gifts';
     public $timestamps = false;
+
+    public $fillable = [
+        'name',
+        'price',
+        'qty',
+        'description',
+    ];
 }

@@ -19,7 +19,7 @@ class CreateGiftsTable extends Migration
             $table->unsignedInteger('price');
             $table->unsignedInteger('qty');
             $table->string('description');
-            $table->float('rating');
+            $table->float('rating')->default(0.0);
             $table->softDeletes();
         });
     }

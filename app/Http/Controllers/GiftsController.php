@@ -71,7 +71,15 @@ class GiftsController extends Controller
 
     public function store(Request $request)
     {
-        $gift = $request->json();
+        $validated = $request->validate([
+            'name' => 'string|min:1',
+            'price' => 'numeric|min:1',
+            'qty' => 'numeric|min:1',
+            'description' => 'string|min:1',
+        ]);
+
+        $gift = Gift::create($validated);
+
         return [
             'gift' => $this->presenter->transform($gift),
         ];
