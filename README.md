@@ -21,3 +21,10 @@ docker-compose exec webapp php artisan tinker
 ```sh
 docker-compose exec webapp php artisan migrate
 ```
+
+### Reset database
+This will wipe all database tables, re-run the migrations, and seeding the data
+```sh
+docker-compose exec webapp php artisan db:wipe && php artisan migrate &&  php artisan d
+b:seed
+```
