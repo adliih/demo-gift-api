@@ -31,7 +31,6 @@ class RatingController extends Controller
 
         // create a new review data
         $review = $gift->addReview($userId, $rating);
-        $review->loadMissing('gift');
 
         return [
             'rating' => $presenter->transform($review)
